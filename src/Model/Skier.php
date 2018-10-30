@@ -64,7 +64,7 @@ class Skier
       */
     public function addAffiliation($affiliation)
     {
-        $this->affiliation[] = $affiliation;
+        $this->affiliations[] = $affiliation;
     }
 
     /**
