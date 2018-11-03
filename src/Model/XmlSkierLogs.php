@@ -38,15 +38,16 @@ class XmlSkierLogs
     public function getClubs()
     {
         $clubs = array();
-		$elements = $this->xpath->query('/SkierLogs/Clubs/Club');		
+	$elements = $this->xpath->query('/SkierLogs/Clubs/Club');		
 		
-		foreach ($elements as $club) { 
-			$name = $club->getElementsByTagName("Name")->item(0)->nodeValue;
-		    $city = $club->getElementsByTagName("City")->item(0)->nodeValue;
-			$county = $club->getElementsByTagName("County")->item(0)->nodeValue;
-						
-			$c = new Club($club->getAttribute('id'), $name, $city, $county);
-            array_push($clubs, $c); // appends new club
+	foreach ($elements as $club) { 
+		// Get the club information
+		$name = $club->getElementsByTagName("Name")->item(0)->nodeValue;
+	   	$city = $club->getElementsByTagName("City")->item(0)->nodeValue;
+		$county = $club->getElementsByTagName("County")->item(0)->nodeValue;
+		// Create a new club and append it into the clubs array	
+		$c = new Club($club->getAttribute('id'), $name, $city, $county);
+        	array_push($clubs, $c); 
 		}
 		
         return $clubs;
@@ -62,7 +63,7 @@ class XmlSkierLogs
     public function getSkiers()
     {
         $skiers = array();
-		$count = 0;
+	$count = 0;
     	$elements = $this->xpath->query('/SkierLogs/Skiers/Skier');		
     	$seasons = $this->xpath->query('/SkierLogs/Season');			
 		
@@ -70,7 +71,7 @@ class XmlSkierLogs
 		foreach ($elements as $skier) {   
 			$userName = $skier->getAttribute('userName');
 			$firstName = $skier->getElementsByTagName("FirstName")->item(0)->nodeValue;
-		    $lastName = $skier->getElementsByTagName("LastName")->item(0)->nodeValue;
+		   	$lastName = $skier->getElementsByTagName("LastName")->item(0)->nodeValue;
 			$yearOfBirth = $skier->getElementsByTagName("YearOfBirth")->item(0)->nodeValue;
 			
 			$s = new Skier($userName, $firstName, $lastName, $yearOfBirth);
